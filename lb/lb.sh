@@ -15,5 +15,3 @@ iptables -t nat -A PREROUTING -p tcp -d $LB_IP --dport $PORT -m statistic --mode
 # 3. Direct the remaining traffic (1/3) to node3 (11.11.11.9:80)
 iptables -t nat -A PREROUTING -p tcp -d $LB_IP --dport $PORT -j DNAT --to-destination $NODE3_IP:$APP_PORT
 
-# 4. Rewrite source address
-iptables -t nat -A POSTROUTING -s 11.11.11.0/24 -d 11.11.11.0/24 -j MASQUERADE
